@@ -1,3 +1,7 @@
+-- Buffer
+-- computercraft inventory transfer buffer class
+-- by CaptainSpaceCat
+
 -- keywords
 local class = require "lib/class"
 
@@ -30,7 +34,7 @@ function Buffer:refresh()
   for i, _ in pairs(self.sucker.list()) do
     raw_invo:append(i)
   end
-  for entry in raw_invo do
+  for entry in raw_invo() do
     self.storage.pullItems(self.sucker_side, entry)
   end
 
@@ -51,6 +55,7 @@ function Buffer:refresh()
   end
 end
 
+-- returns true if the buffer contains an item with the specified name
 function Buffer:contains(name)
   return self.inventory[name] ~= nil and self.inventory[name].count > 0
 end
@@ -77,15 +82,16 @@ function Buffer:get(name, count)
     -- this means we can remove this index from the list of indices for this item
     self.inventory[name].indices:pop(0)
   end
-  return total
+  return count - total
 end
 
 function Buffer:__tostring()
-  local string = "Buffer: {\n"
+  local str = "Buffer: {\n"
   for _, entry in pairs(self.inventory) do
-    string = string.."["..entry.name.."] = {count: " .. str(entry.count) .. "}\n"
+    str = str.."["..entry.name.."] = {count: "..tostring(entry.count).."}\n"
   end
-  string = string.."}"
+  str = str.."}"
+  return str
 end
 
 
