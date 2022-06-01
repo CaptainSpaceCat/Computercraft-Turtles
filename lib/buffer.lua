@@ -87,4 +87,6 @@ function Buffer:__tostring()
     string = string.."["..entry.name.."] = {count: " .. str(entry.count) .. "}\n"
   string = string.."}"
 end
-  
+
+
+return Buffer
