@@ -31,7 +31,7 @@ function Buffer:refresh()
     raw_invo:append(i)
   end
   for entry in raw_invo do
-    self.storage.pullItems(sucker_side, entry)
+    self.storage.pullItems(self.sucker_side, entry)
   end
 
   -- count up whatever is in storage
