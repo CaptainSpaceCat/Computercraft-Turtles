@@ -1,0 +1,12 @@
+shell.run("mkdir lib")
+shell.run("cd lib")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/class.lua")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/json.lua")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/list.lua")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/util.lua")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/tbl.lua")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/set.lua")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/backpack.lua")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/buffer.lua")
+
+shell.run("cd ..")
