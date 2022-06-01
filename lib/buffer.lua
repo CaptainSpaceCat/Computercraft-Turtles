@@ -91,9 +91,9 @@ function Buffer:craft(recipe, amount)
   assert(turtle.craft, "Must equip crafting table")
 
   amount = amount or 1
-  for entry in recipe do
-    self:take(entry.name, #entry.indices*amount)
-    for idx in entry.indices do
+  for entry in recipe() do
+    self:take(entry.name, #entry.positions*amount)
+    for idx in entry.positions() do
       turtle.select(self:turtle_idx_to_crafting_idx(idx))
       turtle.suck(amount)
     end
