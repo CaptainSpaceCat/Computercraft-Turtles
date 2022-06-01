@@ -85,6 +85,7 @@ function Buffer:__tostring()
   local string = "Buffer: {\n"
   for _, entry in pairs(self.inventory) do
     string = string.."["..entry.name.."] = {count: " .. str(entry.count) .. "}\n"
+  end
   string = string.."}"
 end
 
