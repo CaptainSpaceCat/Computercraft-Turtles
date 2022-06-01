@@ -69,7 +69,9 @@ function craft()
   if shard == nil then
       return false
   end
-  buf:craft(recipe)
+  if not buf:craft(recipe) then
+    return false
+  end
 
   -- place the godforged block somewhere to be broken automatically
   turtle.turnLeft()
