@@ -60,15 +60,51 @@ function Buffer:contains(name)
   return self.inventory[name] ~= nil and self.inventory[name].count > 0
 end
 
+-- returns the count of items with the specified name
+function Buffer:count(name)
+  if self:contains(name) then
+    return self.inventory[name].count
+  end
+  return 0
+end
+
 -- if any stacks can be combined in the buffer, this function does so
 -- and updates the internal inventory
 function Buffer:defragment()
 
 end
 
+function Buffer:turtle_idx_to_crafting_idx(idx)
+  if idx > 6 then
+      return idx + 2
+  elseif idx > 3 then
+      return idx + 1
+  end
+  return idx
+end
+
+-- attempts to craft <amount> copies of <recipe>
+-- TODO make it return false if there's not enough ingredients to do so
+-- TODO make it take into account the number of items the recipe outputs and divide accordingly
+function Buffer:craft(recipe, amount)
+  assert(isTurtle, "Crafting is only possible in a turtle")
+  assert(turtle.craft, "Must equip crafting table")
+
+  amount = amount or 1
+  for entry in recipe do
+    self:take(entry.name, #entry.indices*amount)
+    for idx in entry.indices do
+      turtle.select(self:turtle_idx_to_crafting_idx(idx))
+      turtle.suck(amount)
+    end
+  end
+  turtle.select(16)
+  turtle.craft()
+end
+
 -- if any item exists with the specified name, will attempt to transfer
 -- <count> of that item into the sucker
-function Buffer:get(name, count)
+function Buffer:take(name, count)
   if self.inventory[name] == nil then
     return 0
   end
