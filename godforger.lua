@@ -69,6 +69,7 @@ function craft()
   if shard == nil then
       return false
   end
+  buf:refresh()
   if not buf:craft(recipe) then
     return false
   end
