@@ -83,14 +83,28 @@ function Buffer:turtle_idx_to_crafting_idx(idx)
   return idx
 end
 
+-- returns true if there are enough ingredients to craft <recipe> <amount> times
+function Buffer:canCraft(recipe, amount)
+  amount = amount or 1
+  for entry in recipe() do
+    if not self:count(entry.name) >= #entry.positions*amount then
+      return false
+    end
+  end
+  return true
+end
+
 -- attempts to craft <amount> copies of <recipe>
--- TODO make it return false if there's not enough ingredients to do so
+-- returns false if there's not enough ingredients to do so
 -- TODO make it take into account the number of items the recipe outputs and divide accordingly
 function Buffer:craft(recipe, amount)
   assert(isTurtle, "Crafting is only possible in a turtle")
   assert(turtle.craft, "Must equip crafting table")
 
   amount = amount or 1
+  if not self:canCraft(recipe, amount) then
+    return false
+  end
   for entry in recipe() do
     self:take(entry.name, #entry.positions*amount)
     for idx in entry.positions() do
@@ -100,6 +114,7 @@ function Buffer:craft(recipe, amount)
   end
   turtle.select(16)
   turtle.craft()
+  return true
 end
 
 -- if any item exists with the specified name, will attempt to transfer
