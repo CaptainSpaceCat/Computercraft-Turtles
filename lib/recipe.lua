@@ -29,3 +29,5 @@ function Recipe:add(name, positions)
 	entry.positions = List(positions)
 	self.ingredients:append(entry)
 end
+
+return Recipe
