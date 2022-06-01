@@ -3,29 +3,9 @@ local Buffer = require "lib/buffer"
 local List = require "lib/list"
 local Recipe = require "lib/recipe"
 
-buf = Buffer("bottom", "front")
+local buf = Buffer("bottom", "front")
 
-
-function getBufferItems()
-    output = {}
-    for idx, item in pairs(buffer.list()) do
-        output[item.name] = output[item.name] or {}
-        output[item.name].count = (output[item.name].count or 0) + item.count
-        output[item.name].index = idx
-    end
-    return output
-end
-
-function getItem(name, count)
-    items = getBufferItems()
-    if items[name] and items[name].count >= count then
-        buffer.pushItems("front", items[name].index, count)
-        return true
-    end
-    return false
-end
-
-all_shards = List({
+local all_shards = List({
     List({
         "atum:anput_godshard",
         "atum:anubis_godshard",
@@ -49,7 +29,7 @@ all_shards = List({
     }),
 })
 
-scaling_factor = {8, 4, 1}
+local scaling_factor = {8, 4, 1}
 
 function getLeastPriorityShard()
     local scores = List()
@@ -57,6 +37,8 @@ function getLeastPriorityShard()
     for level in all_shards do
         for shard in level do
             local entry = {}
+            print(buf:count(shard))
+            print(scaling_factor[m])
             entry.score = buf:count(shard) * scaling_factor[m]
             entry.name = shard
             scores:append(entry)
