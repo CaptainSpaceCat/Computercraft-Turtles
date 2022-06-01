@@ -1,14 +1,11 @@
 local files = {
-	"class.lua",
-	"json.lua",
-	"list.lua",
-	"util.lua",
-	"tbl.lua",
-	"set.lua",
-	"backpack.lua",
 	"buffer.lua",
-	"update.lua",
+	"class.lua",
+	"list.lua",
 	"recipe.lua",
+	"tbl.lua",
+	"update.lua",
+	"util.lua",
 }
 
 for _, f in pairs(files) do
