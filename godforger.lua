@@ -37,8 +37,6 @@ function getLeastPriorityShard()
     for level in all_shards() do
         for shard in level() do
             local entry = {}
-            print(buf:count(shard))
-            print(scaling_factor[m])
             entry.score = buf:count(shard) * scaling_factor[m]
             entry.name = shard
             scores:append(entry)
