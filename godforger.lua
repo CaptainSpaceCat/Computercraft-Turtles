@@ -34,8 +34,8 @@ local scaling_factor = {8, 4, 1}
 function getLeastPriorityShard()
     local scores = List()
     local m = 1
-    for level in all_shards do
-        for shard in level do
+    for level in all_shards() do
+        for shard in level() do
             local entry = {}
             print(buf:count(shard))
             print(scaling_factor[m])
@@ -47,7 +47,7 @@ function getLeastPriorityShard()
     end
     maxScore = 0
     maxName = ""
-    for entry in scores do
+    for entry in scores() do
         if entry.score > maxScore then
             maxScore = entry.score
             maxName = entry.name
