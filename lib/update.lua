@@ -8,6 +8,7 @@ local files = {
 	"backpack.lua",
 	"buffer.lua",
 	"update.lua",
+	"recipe.lua",
 }
 
 for _, f in pairs(files) do
