@@ -87,7 +87,7 @@ end
 function Buffer:canCraft(recipe, amount)
   amount = amount or 1
   for entry in recipe() do
-    if not self:count(entry.name) >= #entry.positions*amount then
+    if self:count(entry.name) < #entry.positions*amount then
       return false
     end
   end
