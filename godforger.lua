@@ -37,6 +37,8 @@ function getLeastPriorityShard()
     for level in all_shards() do
         for shard in level() do
             local entry = {}
+            print(buf:count(shard))
+            print(scaling_factor[m])
             entry.score = buf:count(shard) * scaling_factor[m]
             entry.name = shard
             scores:append(entry)
@@ -73,7 +75,19 @@ function craft()
 
   -- place the godforged block somewhere to be broken automatically
   turtle.turnLeft()
-  turtle.place()
+  local success = false
+  for i = 1, 120 do
+    if turtle.place() then 
+      success = true 
+      break 
+    end
+    sleep(1)
+  end
+  if not success then 
+    turtle.turnRight()
+    print("Failed to place godforged block, terminating...")
+    return false
+  end
   turtle.turnRight()
   return true
 end
