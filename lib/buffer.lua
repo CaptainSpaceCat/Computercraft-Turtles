@@ -27,12 +27,11 @@ end
 function Buffer:refresh()
   -- move all items from sucker to storage
   local raw_invo = List()
-  for i, v in pairs(self.sucker.list()) do
-    v.index = i
-    raw_invo:append(v)
+  for i, _ in pairs(self.sucker.list()) do
+    raw_invo:append(i)
   end
   for entry in raw_invo do
-    self.storage.pullItems(sucker_side, entry.index)
+    self.storage.pullItems(sucker_side, entry)
   end
 
   -- count up whatever is in storage
