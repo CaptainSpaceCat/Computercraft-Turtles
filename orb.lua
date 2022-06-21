@@ -4,6 +4,7 @@ local delay = 1
 local buf = Buffer("top", "front")
 
 function pee_ready()
+    buf:refresh()
     return (
         buf:count("emendatusenigmatica:uranium_ingot") >= 2 and
         buf:count("emendatusenigmatica:fluorite_dust") >= 1 and
@@ -28,6 +29,5 @@ while true do
         sleep(10)
     end
     urinate()
-    buf:refresh()
     sleep(delay)
 end
