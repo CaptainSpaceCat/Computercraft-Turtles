@@ -10,3 +10,4 @@ shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-
 shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/lib/buffer.lua")
 
 shell.run("cd ..")
+shell.run("wget https://raw.githubusercontent.com/CaptainSpaceCat/Computercraft-Turtles/master/git.lua")
