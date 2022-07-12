@@ -125,7 +125,7 @@ elseif args[1] == "pull" then
 			--save to filename <args[3]> if provided, else <args[2]>
 			local result = processHttpBody(getHttpBody(makeGitURL(username, repo, args[2])), args[3] or args[2])
 			if result then
-				print("File saved locally to " .. args[3] or args[2])
+				print("File saved locally to " .. (args[3] or args[2]))
 			end
 		end
 	else
