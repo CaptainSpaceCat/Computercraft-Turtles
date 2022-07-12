@@ -30,7 +30,7 @@ function urinate()
 end
 
 while true do
-    while not pee_ready() and toilet_flushed() do
+    while not (pee_ready() and toilet_flushed()) do
         sleep(10)
     end
     urinate()
