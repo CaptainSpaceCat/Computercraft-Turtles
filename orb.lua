@@ -1,6 +1,7 @@
 local Buffer = require "lib/buffer"
 
 local delay = 1
+local timeout = 1
 local buf = Buffer("top", "front")
 local RS_SIDE = "right"
 
@@ -30,8 +31,8 @@ function urinate()
 end
 
 while true do
-    while not (pee_ready() and toilet_flushed()) do
-        sleep(10)
+    while not pee_ready() and toilet_flushed() do
+        sleep(timeout)
     end
     urinate()
     sleep(delay)
