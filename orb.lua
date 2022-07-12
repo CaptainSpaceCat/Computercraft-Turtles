@@ -2,6 +2,7 @@ local Buffer = require "lib/buffer"
 
 local delay = 1
 local buf = Buffer("top", "front")
+local RS_SIDE = "right"
 
 function pee_ready()
     buf:refresh()
@@ -10,6 +11,10 @@ function pee_ready()
         buf:count("emendatusenigmatica:fluorite_dust") >= 1 and
         buf:count("emendatusenigmatica:sulfur_dust") >= 1
     )
+end
+
+function toilet_flushed()
+    return rs.getAnalogInput(RS_SIDE) == 0
 end
 
 function urinate()
@@ -25,7 +30,7 @@ function urinate()
 end
 
 while true do
-    while not pee_ready() do
+    while not pee_ready() and toilet_flushed() do
         sleep(10)
     end
     urinate()
