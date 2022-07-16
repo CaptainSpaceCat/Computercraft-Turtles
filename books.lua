@@ -14,4 +14,5 @@ end
 while waitToCraft() do
 	turtle.craft()
 	turtle.drop()
+	sleep(1)
 end
