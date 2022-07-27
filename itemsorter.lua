@@ -6,14 +6,14 @@ function idle()
     end
 end
 
-function sortEm(keep)
+function sortEm(filter)
     for i = 1, 16 do
         if turtle.getItemCount(i) > 0 then
             turtle.select(i)
-            if turtle.getItemDetail(i).name:find("incomplete") then
-                turtle.dropUp()
+            if turtle.getItemDetail(i).name:find(filter) then
+                turtle.dropDown()
             else
-                turtle.drop()
+                turtle.dropUp()
             end
         end
     end
@@ -21,5 +21,5 @@ end
 
 while true do
     idle()
-    sortEm()
+    sortEm("incomplete")
 end
